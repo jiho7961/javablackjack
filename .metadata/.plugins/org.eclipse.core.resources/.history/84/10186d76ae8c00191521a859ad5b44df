@@ -1,0 +1,63 @@
+/* Game.java
+ */
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Game extends JFrame implements ActionListener {
+
+    private Deck deck;
+    public Player player = new Player("player"); 
+    public Player dealer = new Player("dealer"); 
+
+    private JButton jbtnHit = new JButton("Hit");
+    private JButton jbtnStay = new JButton("Stay");
+    private JButton jbtnDeal = new JButton("Deal");
+
+    private JLabel jlblStatus = new JLabel(" ", JLabel.CENTER);
+
+    JPanel playerPanel = new JPanel();
+    JPanel dealerPanel = new JPanel();
+    JPanel buttonsPanel = new JPanel();
+    JPanel statusPanel = new JPanel();
+
+    Game() {
+        JFrame gameFrame = new JFrame("BlackJack");
+        gameFrame.setIconImage(Toolkit.getDefaultToolkit().getImage("cards/10.png"));
+        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        buttonsPanel.add(jbtnHit);
+        buttonsPanel.add(jbtnStay);
+        buttonsPanel.add(jbtnDeal);
+        statusPanel.add(jlblStatus);
+
+        jbtnHit.addActionListener(this);
+        jbtnStay.addActionListener(this);
+        jbtnDeal.addActionListener(this);
+
+        jbtnHit.setEnabled(false);
+        jbtnStay.setEnabled(false);
+
+        dealerPanel.setBackground(Color.GREEN);
+        playerPanel.setBackground(Color.GREEN);
+        buttonsPanel.setBackground(Color.GREEN);
+        statusPanel.setBackground(Color.GREEN);
+
+        gameFrame.setLayout(new BorderLayout());
+        gameFrame.add(dealerPanel, BorderLayout.NORTH);
+        gameFrame.add(playerPanel, BorderLayout.CENTER);
+        gameFrame.add(buttonsPanel, BorderLayout.SOUTH);
+        gameFrame.add(statusPanel, BorderLayout.WEST);
+        gameFrame.repaint();
+        gameFrame.setSize(450, 350);
+        gameFrame.setVisible(true);
+    }
+
+   
+
+
+    public static void main(String[] args) {
+        new Game();
+    }
+}
